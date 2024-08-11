@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Post::all();
+        return User::all();
     }
 
     /**
@@ -20,25 +20,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        return Post::create($request->all());
+        return User::create($request->all());
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Post $posts)
+    public function show(string $id)
     {
-        return Post::find($posts);
+        return User::find($id);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        $posts = Post::find($id);
-        $posts->update($request->all());
-        return $posts;
+        $users = User::find($id);
+        $users->update($request->all());
+        return $users;
     }
 
     /**
@@ -46,16 +46,16 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        return Post::destroy($id);
+        return User::destroy($id);
     }
-           /**
+       /**
      * search the specified resource from storage.
-     * @param str $title
+     * @param str $name
      * @return \Illuminate\Http\Response
      *
      */
-    public function search($title)
+    public function search($name)
     {
-       return Post::where('title', 'like', '%'.$title.'%')->get();
+       return User::where('name', 'like', '%'.$name.'%')->get();
     }
 }
