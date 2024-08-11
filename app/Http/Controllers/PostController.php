@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use  App\Http\Requests\PostStoreRequest;
+use  App\Http\Requests\PostUpdateRequest;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -18,7 +20,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostStoreRequest $request)
     {
         return Post::create($request->all());
     }
@@ -34,7 +36,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(PostUpdateRequest $request, $id)
     {
         $posts = Post::find($id);
         $posts->update($request->all());

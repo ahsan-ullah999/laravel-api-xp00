@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\UserStoreRequest;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
         return User::create($request->all());
     }
@@ -34,7 +35,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserStoreRequest $request, string $id)
     {
         $users = User::find($id);
         $users->update($request->all());
