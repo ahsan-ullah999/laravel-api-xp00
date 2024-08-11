@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\CommentModel;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -43,5 +44,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    // public function comments(){
+    //     return $this->hasMany(Comment::class, 'user_id');
+    // }
+    public function comments(){
+        return $this->hasMany(CommentModel::class, 'user_id');
+    }
+
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'post_user', 'user_id', 'post_id');
     }
 }

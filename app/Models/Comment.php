@@ -12,4 +12,11 @@ class CommentModel extends Model
         'description'=>'array'
      ];
 
+   public function posts(){
+    return $this->belongsTo(Post::class, 'post_id');
+   }
+   public function users(){
+    return $this->belongsTo(User::class, 'user_id');
+   }
+
 }

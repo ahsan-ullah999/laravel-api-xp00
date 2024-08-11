@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Resources\PostResource;
 use  App\Http\Requests\PostStoreRequest;
 use  App\Http\Requests\PostUpdateRequest;
 
@@ -14,6 +15,9 @@ class PostController extends Controller
      */
     public function index()
     {
+        $posts = Post::with('user')->get();
+        return PostResource::collection($posts);
+
         return Post::all();
     }
 
